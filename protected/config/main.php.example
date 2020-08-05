@@ -1,0 +1,146 @@
+<?php
+$nomeApplicazione = 'Bolt Wallet';
+$shortName = 'Bolt';
+
+//Associazione
+$nomeAssociazione = 'Associazione Napoli Blockchain';
+$logoApplicazione = '/css/images/bolt-logo.png';
+$logoHeader = '/css/images/bolt-header.png';
+
+$timeOutSeconds = 3600*24*30; // 1 mese
+
+//configurazione email
+$adminSiteweb = 'napoliblockchain.it';
+$adminEmail = 'info@napoliblockchain.it';
+$adminName = 'Napoli Blockchain ';
+
+
+//explorer btc ed eth
+$blockchainCheck = 'https://blockchair.com/search?q=';
+
+
+// This is the main Web application configuration. Any writable
+// CWebApplication properties can be configured here.
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
+$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../packages/';
+Yii::setPathOfAlias('libs', $libsPath);
+
+return array(
+	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'name'=>$nomeApplicazione,
+	'language' => 'it', // Specifies which language the application is targeted to
+	'sourceLanguage' => 'it_it', //Specifies which language that the application is written in
+
+	// preloading 'log' component
+	'preload'=>array('log','bootstrap','jsTrans'),
+
+	// autoloading model and component classes
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+		'ext.yii-mail.YiiMailMessage',
+	),
+
+
+	'modules'=>array(
+		// uncomment the following to enable the Gii tool
+	),
+
+
+	// application components
+	'components'=>array(
+		'session' => array(
+		   'autoStart'=>true,
+		),
+		'jsTrans'=>array(  // abilita la traduzione per javascript
+			'class'=>'ext.JsTrans.JsTrans',
+			'categories'=>array('js'), // the categories to be made available
+			'languages'=>array('it'), // the languages to be made available
+			//'onMissingTranslation'=>array('site/missingTranslation'), // optional route to handle untranslated messages
+		),
+		'bootstrap'=>array(
+			'class'=>'bootstrap.components.Bootstrap',
+		),
+		'user'=>array(
+			// enable cookie-based authentication
+			'allowAutoLogin'=>true,
+		),
+		// SEND EMAIL EXTENSION
+		'mail' => array(
+											'class' => 'ext.yii-mail.YiiMail',
+											'transportType'=>'smtp',
+											'transportOptions'=>array(
+											'host'=>'',
+											'username'=>'',
+											'password'=>'',
+											'port'=>'',
+											'encryption'=>'',
+										),
+					'viewPath' => 'application.views.mail',
+					'logging' => true,
+        	'dryRun' => false,
+		),
+		//SSH LIBRARY
+		'phpseclib' => array(
+      		'class' => 'ext.phpseclib.PhpSecLib'
+    	),
+
+
+		// MIE CLASSI
+		'webRequest'=>require($libsPath.'/webRequest/webRequest.php'),
+
+		'crypt'=>require($libsPath.'/crypt/crypt.php'),
+		'Utils'=>require($libsPath.'/Utils/Utils.php'),
+		'NAPay'=>require($libsPath.'/NaPacks/Autoloader.php'),
+		'eth'=>require($libsPath.'/ethereum/eth.php'),
+
+		'NMail'=>require(dirname(__FILE__).'../../extensions/NMail.php'),
+
+
+		// database settings are configured in database.php
+		'db'=>require(dirname(__FILE__).'/database.php'),
+
+		'errorHandler'=>array(
+			// use 'site/error' action to display errors
+			'errorAction'=>YII_DEBUG ? null : 'site/error',
+		),
+
+		'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+				array(
+					'class'=>'CFileLogRoute',
+					'levels'=>'error, warning',
+				),
+				// uncomment the following to show log messages on web pages
+				/*
+				array(
+					'class'=>'CWebLogRoute',
+				),
+				*/
+			),
+		),
+
+	),
+
+	// application-level parameters that can be accessed
+	// using Yii::app()->params['paramName']
+	'params'=>array(
+		'libsPath'=>$libsPath,
+		// this is used in contact page
+		'adminSiteweb'=>$adminSiteweb,
+		'adminEmail'=>$adminEmail,
+		'adminName'=>$adminName,
+		'website'=>'https://napoliblockchain.it', // per il link sul logo
+
+		'nomeAssociazione'=>$nomeAssociazione,
+		'logoApplicazione'=>$logoApplicazione,
+		'logoHeader'=>$logoHeader,
+
+		'timeOutSeconds'=>$timeOutSeconds,
+		'shortName'=>$shortName,
+		'blockchainCheck'=>$blockchainCheck,
+	),
+
+);
