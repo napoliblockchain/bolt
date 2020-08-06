@@ -1,13 +1,13 @@
 #!/bin/bash
 echo Updating...
-if [ ! -d "/var/www/bolt/assets" ]; then
-    mkdir /var/www/bolt/assets
+if [ ! -d "assets" ]; then
+    mkdir assets
 fi
-if [ ! -d "/var/www/bolt/protected/qrcodes" ]; then
-    mkdir /var/www/bolt/protected/qrcodes
+if [ ! -d "protected/qrcodes" ]; then
+    mkdir protected/qrcodes
 fi
-if [ ! -d "/var/www/bolt/uploads" ]; then
-    mkdir /var/www/bolt/uploads
+if [ ! -d "uploads" ]; then
+    mkdir uploads
 fi
 
 echo stopping wt service...
@@ -16,18 +16,15 @@ systemctl stop wt
 git stash
 git pull
 
-chown -R www-data:www-data /var/www/bolt/assets/
-chown -R www-data:www-data /var/www/bolt/uploads/
-chown -R www-data:www-data /var/www/bolt/protected/runtime/
-chown -R www-data:www-data /var/www/bolt/protected/log/
-chown -R www-data:www-data /var/www/bolt/protected/qrcodes/
+chown -R www-data:www-data assets/
+chown -R www-data:www-data uploads/
+chown -R www-data:www-data protected/runtime/
+chown -R www-data:www-data protected/log/
+chown -R www-data:www-data protected/qrcodes/
 
-chmod 755 /var/www/bolt/protected/yiic
-chmod 755 /var/www/bolt/update.sh
-chmod +x /var/www/bolt/update.sh
-
-rm index.php
-cp index-production.php index.php 
+chmod 755 protected/yiic
+chmod 755 update.sh
+chmod +x update.sh
 
 echo Versioning...
 git rev-parse HEAD>version.txt
