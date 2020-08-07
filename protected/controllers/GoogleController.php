@@ -1,5 +1,5 @@
 <?php
-require_once Yii::app()->params['libsPath'] . '/oauth/google/login.php';
+require_once Yii::app()->params['libsPath'] . '/OAuth/oauth-google/login.php';
 
 class GoogleController extends Controller
 {
