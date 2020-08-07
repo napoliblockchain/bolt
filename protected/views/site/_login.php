@@ -16,15 +16,15 @@ include ('js_facebook.php');
 // include ('js_twitter.php');
 
 
-require_once Yii::app()->params['libsPath'] . '/oauth/telegram/login.php';
+require_once Yii::app()->params['libsPath'] . '/OAuth/telegram/login.php';
 $checkTelegramAuthorization = Yii::app()->createUrl('telegram/CheckAuthorization');
 $bot_username = Settings::load()->telegramBotName;
 $bot_token = Settings::load()->telegramToken;
 
-require_once Yii::app()->params['libsPath'] . '/oauth/google/login.php';
+require_once Yii::app()->params['libsPath'] . '/OAuth/google/login.php';
 $checkGoogleAuthorization = Yii::app()->createUrl('google/CheckAuthorization');
 
-require_once Yii::app()->params['libsPath'] . '/oauth/facebook/login.php';
+require_once Yii::app()->params['libsPath'] . '/OAuth/facebook/login.php';
 $facebookAppID = $settings->facebookAppID;
 $facebookAppVersion = $settings->facebookAppVersion;
 $sourceLanguage = explode('_',Yii::app()->sourceLanguage);
