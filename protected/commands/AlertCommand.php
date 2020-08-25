@@ -1,4 +1,9 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+Yii::import('libs.NaPacks.Push');
+
 class AlertCommand extends CConsoleCommand
 {
 	/**
@@ -40,8 +45,8 @@ class AlertCommand extends CConsoleCommand
 		$id_institute = crypt::Decrypt($idInstitute);
 
 		// TEST con id MANUALE
-		// $id_user = $idUser;   // 1
-		// $id_institute = $idInstitute; // 8
+		 // $id_user =  34;
+		 // $id_institute = 1;
 
 		$institute = Institutes::model()->findByPk($id_institute);
 

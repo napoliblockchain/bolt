@@ -1,4 +1,14 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.Settings');
+Yii::import('libs.NaPacks.WebApp');
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+Yii::import('libs.NaPacks.Push');
+Yii::import('libs.ethereum.eth');
+Yii::import('libs.Utils.Utils');
+Yii::import('libs.webRequest.webRequest');
+
 require_once Yii::app()->params['libsPath'] . '/ethereum/web3/vendor/autoload.php';
 
 use Web3\Web3;
@@ -39,6 +49,15 @@ class SendCommand extends CConsoleCommand
 		);
 	}
 
+	//scrive a video e nel file log le informazioni richieste
+	private function log($text,$die=false){
+		$save = new Save;
+		$save->WriteLog('bolt','commands','send', $text);
+		echo "\r\n" .date('Y/m/d h:i:s a - ', time()) .$text;
+		if ($die)
+			die();
+	}
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -50,7 +69,7 @@ class SendCommand extends CConsoleCommand
 	{
 		$model=Tokens::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			$this->log('The requested settings page does not exist.',true);
 
 		return $model;
 	}
@@ -59,28 +78,18 @@ class SendCommand extends CConsoleCommand
 		$save = new Save;
 
 		$SendingType = "null";
-
-		$nomeLogFile = Yii::app()->basePath."/log/send-command.log";
-		// if (!is_writable($nomeLogFile)){
-		// 	chmod($nomeLogFile, 0755);  // octal; correct value of mode
-		// }
-
-		//non c'è output, pertanto salvo gli errori nel log file
-		$myfile = fopen($nomeLogFile, "a");
-		$this->setLogFile($myfile);
-
-		$save->WriteLog('bolt','commands','send',"Start : Checking tx id #: $id");
+		$this->log("Start : Checking tx id #: $id");
 
 		set_time_limit(0); //imposto il time limit unlimited
 
 		//carico l'invoice
 		$tokens = $this->loadModel(crypt::Decrypt($id));
-		$save->WriteLog('bolt','commands','send',"Tokens loaded.");
+		$this->log("Tokens loaded.");
 
 		//Carico i parametri
 		$settings=Settings::load();
 		if ($settings === null){//} || empty($settings->poa_port)){
-			$save->WriteLog('bolt','commands','send',"Settings NOT loaded.",true);
+			$this->log("Settings NOT loaded.",true);
 		}
 
 		self::setDecimals($settings->poa_decimals);
@@ -89,11 +98,11 @@ class SendCommand extends CConsoleCommand
 		// $web3 = new Web3($settings->poa_url);
 		$poaNode = WebApp::getPoaNode();
 		if (!$poaNode){
-			$save->WriteLog('bolt','commands','send',"All Nodes are down.",true);
+			$this->log("All Nodes are down.",true);
 		}
 		$web3 = new Web3($poaNode);
 		$contract = new Contract($web3->provider, $settings->poa_abi);
-		$save->WriteLog('bolt','commands','send',"Web3 connected.");
+		$this->log("Web3 connected.");
 
 		$eth = $web3->eth;
 		$utils = $web3->utils;
@@ -106,19 +115,18 @@ class SendCommand extends CConsoleCommand
 		$expiring_seconds = $settings->poa_expiration * 60;
 		while (true)
 		{
-			$save->WriteLog('bolt','commands','send'," : $SendingType status: ".$tokens->status.", Seconds: ".$expiring_seconds);
+			$this->log("$SendingType status: ".$tokens->status.", Seconds: ".$expiring_seconds);
 			$ipnflag = false;
 
 			if ($tokens->type == 'ether'){
 				$web3->eth->getTransactionByHash($tokens->txhash, function ($err, $transaction){
 					if ($err !== null) {
-						$save->WriteLog('bolt','commands','send'," : error ether: ".$err->getMessage(), true);
+						$this->log("error ether: ".$err->getMessage(), true);
 					}
 					self::setTransaction($transaction);
 				});
 
 				$transaction = self::getTransaction();
-				#fwrite($this->getLogFile(), date('Y/m/d h:i:s a', time()) . " : block number: ".$transaction->blockNumber."\n");
 
 				//controlla lo status del blocco in cui viene inclusa la Transazione
 				if (!empty($transaction->blockNumber)){
@@ -132,8 +140,7 @@ class SendCommand extends CConsoleCommand
 			}else{
 				$contract->eth->getTransactionReceipt($tokens->txhash, function ($err, $transaction)  {
 					if ($err !== null) {
-						$save->WriteLog('bolt','commands','send'," : error token: ".$err->getMessage());
-						sleep(5); //exit;
+						$this->log("error token: ".$err->getMessage(),true);
 					}
 					self::setTransaction($transaction);
 				});
@@ -144,9 +151,6 @@ class SendCommand extends CConsoleCommand
 				if (!empty($transaction->blockNumber)){
 					if (!empty($transaction->logs)){
 						//controlla se il fromAccount sia lo stesso del sender
-						// fwrite($this->getLogFile(), date('Y/m/d h:i:s a', time()) . " : token transaction: <pre>".print_r($transaction,true)."</pre>\n");
-						// fwrite($this->getLogFile(), date('Y/m/d h:i:s a', time()) . " : check sender " .$transaction->from. " & reicever: ".$tokens->from_address."\n");
-
 						if (strtoupper($transaction->from) == strtoupper($tokens->from_address)){
 							$transactionValue = self::wei2eth($transaction->logs[0]->data, self::getDecimals()); //2 decimali del token
 
@@ -167,9 +171,6 @@ class SendCommand extends CConsoleCommand
 								'deleted' => 0,
 							);
 							Push::Send($save->Notification($notification),'bolt');
-
-							// fwrite($this->getLogFile(), date('Y/m/d h:i:s a', time()) . " : notification: <pre>".print_r($notification,true)."</pre>\n");
-
 						}
 					}
 				}
@@ -182,16 +183,13 @@ class SendCommand extends CConsoleCommand
 			}
 
 			if ($ipnflag){ //send ipn in case flag is true: può venire
-				#echo '<pre>'.print_r($tokens->attributes,true).'</pre>';
-
 				// SALVA I TOKEN
 				if ($tokens->update()){
-					$save->WriteLog('bolt','commands','send',"End   : $SendingType wallet invoice n. $id, Status: $tokens->status, Price: $transactionValue.");
+					$this->log("End   : $SendingType wallet invoice n. $id, Status: $tokens->status, Price: $transactionValue.");
 					$this::sendIpn($tokens->attributes, $SendingType);
-
 				}
 				else
-					$save->WriteLog('bolt','commands','send',"Error : Cannot save $SendingType transaction on invoice n. $id, Status: $tokens->status.");
+					$this->log("Error : Cannot save $SendingType transaction on invoice n. $id, Status: $tokens->status.");
 
 				break;
 			}
@@ -199,7 +197,6 @@ class SendCommand extends CConsoleCommand
 			$expiring_seconds --;
 			sleep(1);
 		}
-		#fwrite($this->getLogFile(), date('Y/m/d h:i:s a', time()) . " : Uscito...\n");
 	}
 	/*
 	 * funzione che riceve il valore della transazione nello smart contract
@@ -249,7 +246,7 @@ class SendCommand extends CConsoleCommand
 
 	private function sendIpn($ipn, $SendingType){
 		$myfile = fopen(Yii::app()->basePath."/log/send-ipn.log", "a");
-        $date = date('Y/m/d h:i:s a', time());
+    $date = date('Y/m/d h:i:s a', time());
 		#fwrite($myfile, $date . " : 0. Start wallet Ipnlogger\n");
 		//
 		$tokens = (object) $ipn;

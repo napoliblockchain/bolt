@@ -1,6 +1,7 @@
 <?php
 
-$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../packages/';
+$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../packages';
+Yii::setPathOfAlias('libs', $libsPath);
 
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
@@ -31,14 +32,6 @@ return array(
 				),
 			),
 		),
-		// MIE CLASSI
-		'crypt'=>require($libsPath.'/crypt/crypt.php'),
-		'webRequest'=>require($libsPath.'/webRequest/webRequest.php'),
-			'Utils'=>require($libsPath.'/Utils/Utils.php'),
-			'NAPay'=>require($libsPath.'/NaPacks/Autoloader.php'),
-			'eth'=>require($libsPath.'/ethereum/eth.php'),
-
-
 	),
 	'params'=>array(
 		'libsPath'=>$libsPath,

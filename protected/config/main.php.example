@@ -23,7 +23,7 @@ $blockchainCheck = 'https://blockchair.com/search?q=';
 // CWebApplication properties can be configured here.
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 
-$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../packages/';
+$libsPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'../../../packages';
 Yii::setPathOfAlias('libs', $libsPath);
 
 return array(
@@ -68,33 +68,26 @@ return array(
 		),
 		// SEND EMAIL EXTENSION
 		'mail' => array(
-											'class' => 'ext.yii-mail.YiiMail',
-											'transportType'=>'smtp',
-											'transportOptions'=>array(
-											'host'=>'',
-											'username'=>'',
-											'password'=>'',
-											'port'=>'',
-											'encryption'=>'',
-										),
-					'viewPath' => 'application.views.mail',
-					'logging' => true,
-        	'dryRun' => false,
+			'class' => 'ext.yii-mail.YiiMail',
+			'transportType'=>'smtp',
+			'transportOptions'=>array(
+			'host'=>'',
+			'username'=>'',
+			'password'=>'',
+			'port'=>'',
+			'encryption'=>'',
+		),
+			'viewPath' => 'application.views.mail',
+			'logging' => true,
+	  	'dryRun' => false,
 		),
 		//SSH LIBRARY
 		'phpseclib' => array(
-      		'class' => 'ext.phpseclib.PhpSecLib'
-    	),
+      'class' => 'ext.phpseclib.PhpSecLib'
+    ),
 
 
 		// MIE CLASSI
-		'webRequest'=>require($libsPath.'/webRequest/webRequest.php'),
-
-		'crypt'=>require($libsPath.'/crypt/crypt.php'),
-		'Utils'=>require($libsPath.'/Utils/Utils.php'),
-		'NAPay'=>require($libsPath.'/NaPacks/Autoloader.php'),
-		'eth'=>require($libsPath.'/ethereum/eth.php'),
-
 		'NMail'=>require(dirname(__FILE__).'../../extensions/NMail.php'),
 
 

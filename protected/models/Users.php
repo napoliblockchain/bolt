@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This is the model class for table "np_users".
  *
@@ -14,6 +13,7 @@
  * @property string $activation_code
  * @property integer $status_activation_code
  */
+
 class Users extends CActiveRecord
 {
 	public $ga_cod; //google 2fa code

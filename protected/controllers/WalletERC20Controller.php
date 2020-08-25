@@ -1,4 +1,13 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.Settings');
+Yii::import('libs.NaPacks.WebApp');
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+Yii::import('libs.NaPacks.Push');
+Yii::import('libs.ethereum.eth');
+Yii::import('libs.Utils.Utils');
+
 require_once Yii::app()->params['libsPath'] . '/ethereum/web3/vendor/autoload.php';
 require_once Yii::app()->params['libsPath'] . '/ethereum/ethereum-tx/vendor/autoload.php';
 require_once Yii::app()->params['libsPath'] . '/ethereum/criptojs-aes.php';
