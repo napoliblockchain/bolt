@@ -1,4 +1,5 @@
 <?php
+Yii::import('libs.NaPacks.WebApp');
 
 /**
  * This is the model class for table "bolt_socialusers".

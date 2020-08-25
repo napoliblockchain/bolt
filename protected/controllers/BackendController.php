@@ -1,4 +1,8 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.Notifi');
+Yii::import('libs.NaPacks.WebApp');
+
 class BackendController extends Controller
 {
 

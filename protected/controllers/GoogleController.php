@@ -1,4 +1,7 @@
 <?php
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+
 require_once Yii::app()->params['libsPath'] . '/OAuth/oauth-google/login.php';
 
 class GoogleController extends Controller

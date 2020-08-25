@@ -1,4 +1,7 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.Settings');
+Yii::import('libs.NaPacks.Logo');
 
 class SettingsController extends Controller
 {
