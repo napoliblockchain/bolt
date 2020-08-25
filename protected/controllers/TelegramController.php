@@ -1,4 +1,9 @@
 <?php
+Yii::import('libs.crypt.crypt');
+Yii::import('libs.NaPacks.Settings');
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+
 require_once Yii::app()->params['libsPath'] . '/oauth/telegram/login.php';
 
 class TelegramController extends Controller
@@ -118,6 +123,6 @@ class TelegramController extends Controller
 		}
 
 		$auth_data_json = CJSON::encode($auth_data);
-	  	setcookie('tg_user', $auth_data_json);
+	  setcookie('tg_user', $auth_data_json);
 	}
 }

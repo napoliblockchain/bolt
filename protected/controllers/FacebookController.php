@@ -1,9 +1,9 @@
 <?php
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
+
 class FacebookController extends Controller
 {
-
-
-
 	public function init()
 	{
 	}
@@ -30,8 +30,6 @@ class FacebookController extends Controller
 			array('allow', // allow user to perform actions
 				'actions'=>array(
 					'CheckAuthorization', // check telegram authorization
-					//'getTelegramUserData',
-
 				),
 				'users'=>array('*'), // no login
 				//'users'=>array('@'), //logged users
@@ -49,8 +47,6 @@ class FacebookController extends Controller
 
 	public function actionCheckAuthorization()
 	{
-		// echo "<pre>".print_r($_POST,true)."</pre>";
-		// exit;
 		$auth_data = $_POST;
 
 		$model = Users::model()->findByAttributes([
