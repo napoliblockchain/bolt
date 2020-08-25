@@ -45,8 +45,8 @@ class AlertCommand extends CConsoleCommand
 		$id_institute = crypt::Decrypt($idInstitute);
 
 		// TEST con id MANUALE
-		 $id_user =  34;
-		 $id_institute = 1;
+		 // $id_user =  34;
+		 // $id_institute = 1;
 
 		$institute = Institutes::model()->findByPk($id_institute);
 
