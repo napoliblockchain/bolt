@@ -4,13 +4,13 @@
 
 ❤️❤️❤️ A wallet using Naples Payment Token, implementing a lot of PWA love. ❤️❤️❤️
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/napoliblockchain/napay-docs/blob/master/LICENSE)
-[![GitHub commit](https://img.shields.io/github/last-commit/jambtc/bolt)](https://github.com/napoliblockchain/bolt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/jambtc/blob/master/LICENSE)
+[![GitHub commit](https://img.shields.io/github/last-commit/jambtc/fidelize-bolt)](https://github.com/jambtc/fidelize-bolt)
 
 
 ## Authors
 
-- [Sergio Casizzone](https://sergiocasizzone.it)
+- [Sergio Casizzone](https://altervista.sergiocasizzone.it)
 
 
 ## Features
@@ -25,9 +25,6 @@
   - [x] Transactions list
   - [x] Transaction details
   - [x] Blockchain sync & rescan
-  - [x] Address Book management
-  - [x] Send Message to user
-  - [x] Send Token to connected Social users
 
 
 **PWA**
@@ -57,7 +54,7 @@ This project is open source under the MIT license, which means you have full acc
 
 [MIT](LICENSE) ©2020 Napoli Blockchain
 
-[issues]: https://bitbucket.org/jambtc/bolt/issues
+[issues]: https://github.org/napoliblockchain/bolt/issues
 
 
 
