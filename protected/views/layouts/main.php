@@ -39,9 +39,6 @@
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <!-- Bootstrap CSS-->
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/bootstrap-4.3/css/bootstrap.min.css" rel="stylesheet" media="all">
-
     <!-- Vendor CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -59,7 +56,9 @@
     <!-- NEW CSS-->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/wallet.css" rel="stylesheet" media="all" >
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/jamburger.css" rel="stylesheet" media="all" >
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/sandstone.css" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS from bootswatch.com -->
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/solar.css" rel="stylesheet" media="all">
 
     <!-- Jquery JS-->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/vendor/chartjs/Chart.bundle.min.js"></script>

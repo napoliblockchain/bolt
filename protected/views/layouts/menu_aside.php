@@ -30,16 +30,7 @@
 						<a href="index.php?r=tokens/index">
 							 <i class="fa fa-star"></i><?php echo Yii::t('lang','Transactions');?></a>
 					</li>
-
-					<li>
-						<a href="index.php?r=contacts/index">
-							 <i class="fa fa-users"></i><?php echo Yii::t('lang','Contacts');?></a>
-					</li>
-					<li>
-						<!-- <a href="<?php echo Yii::app()->createUrl('merchants/index');?>"> -->
-						<a href="https://www.comune.napoli.it/blockchain" target="_blank">
-							<i class="fas fa-industry"></i><?php echo Yii::t('lang','Supporter activities');?></a>
-					</li>
+				
 					<li>
 						<a href="<?php echo Yii::app()->createUrl('site/contactForm'); ?>" target="_blank">
 							 <i class="fa fa-bug"></i><?php echo Yii::t('lang','Bug report');?></a>

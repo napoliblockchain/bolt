@@ -54,7 +54,7 @@
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/theme.css" rel="stylesheet" media="all">
 
     <!-- NEW CSS-->
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/sandstone.css" rel="stylesheet" media="all">
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/themes/cool/css/spacelab.css" rel="stylesheet" media="all">
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/wallet.css" rel="stylesheet" media="all" >
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/fixlogin.css" rel="stylesheet" media="all" >
 

@@ -4,12 +4,7 @@
 			<div class="header-mobile-inner">
 				<?php Logo::header(); ?>
 
-				<button class="jamburger jamburger--slider btn" type="button">
-					<img style="max-width: 40px;" src='css/images/gift.png' />
-					<span class="jamburger-box">
-						<span class="jamburger-inner"></span>
-					</span>
-				</button>
+
 
 
 				<button class="hamburger hamburger--slider" type="button">
@@ -20,22 +15,6 @@
 			</div>
 		</div>
 	</div>
-
-	<nav class="jambar-mobile">
-		<div class="container-fluid">
-			<ul class="jambar-mobile__list list-unstyled">
-				<li class="active">
-					<!-- <a href="<?php echo Yii::app()->createUrl('merchants/index');?>"> -->
-					<a href="https://www.comune.napoli.it/blockchain" target="_blank">
-						<i class="fas fa-industry"></i> <?php echo Yii::t('lang','Supporter activities');?> </a>
-				</li>
-				<li>
-					<a href="https://www.comune.napoli.it/blockchain" target="_blank">
-						<i class="fas fa-map-marker-alt"></i> <?php echo Yii::t('lang','Where can I earn the coupons');?> </a>
-				</li>
-			</ul>
-		</div>
-	</nav>
 
 
 	<nav class="navbar-mobile">
@@ -63,10 +42,6 @@
 					<?php echo Yii::t('lang','Transactions');?> <i class="fa fa-star"></i></a>
 			</li>
 
-			<li>
-				<a href="index.php?r=contacts/index">
-					 <?php echo Yii::t('lang','Contacts');?> <i class="fa fa-users"></i></a>
-			</li>
 			<li>
 				<a href='<?php echo Yii::app()->createUrl('site/contactForm'); ?>' target="_blank">
 					 <?php echo Yii::t('lang','Bug report');?> <i class="fa fa-bug"></i></a>

@@ -14,7 +14,7 @@ var STATIC_FILES = [
 	'themes/cool/vendor/jquery-3.2.1.min.js',
 	'themes/cool/vendor/chartjs/Chart.bundle.min.js',
 	'themes/cool/vendor/bootstrap-4.1/popper.min.js',
-	'themes/cool/vendor/bootstrap-4.3/js/bootstrap.min.js',
+	// 'themes/cool/vendor/bootstrap-4.3/js/bootstrap.min.js',
 	'themes/cool/vendor/slick/slick.min.js',
 	'themes/cool/vendor/wow/wow.min.js',
 	'themes/cool/vendor/animsition/animsition.min.js',
@@ -63,7 +63,7 @@ var STATIC_FILES = [
 	'themes/cool/vendor/perfect-scrollbar/perfect-scrollbar.css',
 
 	'themes/cool/css/theme.css',
-	'themes/cool/css/sandstone.css',
+	// 'themes/cool/css/sandstone.css',
 	'css/wallet.css',
 	'css/fixlogin.css',
 	'css/yiipager.css',

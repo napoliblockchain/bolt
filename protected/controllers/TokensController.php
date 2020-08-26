@@ -1,6 +1,8 @@
 <?php
 Yii::import('libs.crypt.crypt');
 Yii::import('libs.NaPacks.Settings');
+Yii::import('libs.NaPacks.SaveModels');
+Yii::import('libs.NaPacks.Save');
 Yii::import('libs.ethereum.eth');
 Yii::import('libs.NaPacks.WebApp');
 Yii::import('libs.NaPacks.Logo');
