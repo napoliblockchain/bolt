@@ -4,6 +4,7 @@ Yii::import('libs.NaPacks.Settings');
 Yii::import('libs.NaPacks.WebApp');
 Yii::import('libs.NaPacks.SaveModels');
 Yii::import('libs.NaPacks.Save');
+Yii::import('libs.ethereum.eth');
 
 require_once Yii::app()->params['libsPath'] . '/ethereum/web3/vendor/autoload.php';
 
@@ -521,13 +522,13 @@ class BlockchainController extends Controller
 									// in entrambi i casi controllo che il wallet di chi invia sia
 									// di un Istituto, nel qual caso Faccio partire il timer
 									// per il messaggio di alert
-									$institute = Institutes::model()->findByAttributes(['wallet_address'=>$tokens->from_address]);
-									if ($institute !== null){
-										// eseguo lo script che si occuperà in background di
-										// inviare il messaggio di alert all'utente
-										$cmd = Yii::app()->basePath.DIRECTORY_SEPARATOR.'yiic alert --iduser='.crypt::Encrypt(Wallets::model()->findByAttributes(['wallet_address'=>$tokens->to_address])->id_user). ' --idInstitute='.crypt::Encrypt($institute->id_institute);
-										Utils::execInBackground($cmd);
-									}
+									// $institute = Institutes::model()->findByAttributes(['wallet_address'=>$tokens->from_address]);
+									// if ($institute !== null){
+									// 	// eseguo lo script che si occuperà in background di
+									// 	// inviare il messaggio di alert all'utente
+									// 	$cmd = Yii::app()->basePath.DIRECTORY_SEPARATOR.'yiic alert --iduser='.crypt::Encrypt(Wallets::model()->findByAttributes(['wallet_address'=>$tokens->to_address])->id_user). ' --idInstitute='.crypt::Encrypt($institute->id_institute);
+									// 	Utils::execInBackground($cmd);
+									// }
 								}
 							}
 						} //endif 'ethereum or token'
