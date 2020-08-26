@@ -331,9 +331,9 @@ $logoutURL = Yii::app()->createUrl('site/logout');
 				<div class="form-group">
 					<small class="form-text text-muted"><?php echo $form->labelEx($walletForm,'to', array('class'=>'text-light')); ?></small>
 					<div class="input-group">
-						<button type='button' class="btn btn-primary" id="activate-contacts-btn" data-toggle="modal" data-target="#scrollmodalContacts">
+						<!-- <button type='button' class="btn btn-primary" id="activate-contacts-btn" data-toggle="modal" data-target="#scrollmodalContacts">
 							<i class="fa fa-users"></i>
-						</button>
+						</button> -->
 
 						<?php echo $form->textField($walletForm,'to',array('size'=>60,'maxlength'=>250,'class'=>'form-control f05', 'autocomplete' => 'off')); ?>
 						<button type='button' class="btn btn-light" id="activate-nfc-btn" data-toggle="modal" data-target="#scrollmodalNFC" style="padding: 0px 5px 0px 5px;">
@@ -373,26 +373,26 @@ $logoutURL = Yii::app()->createUrl('site/logout');
 </div>
 
 <!-- MOSTRA contatti -->
-<div class="modal fade" id="scrollmodalContacts" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabelContacts" style="display: none;" aria-hidden="true">
+<!-- <div class="modal fade" id="scrollmodalContacts" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabelContacts" style="display: none;" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content alert-dark text-light">
 			<div class="modal-header">
-				<h3 class="modal-title" id="scrollmodalLabelContacts"><i class="fa fa-users"></i> <?php echo Yii::t('lang','Contacts');?></h3>
+				<h3 class="modal-title" id="scrollmodalLabelContacts"><i class="fa fa-users"></i> <?php //echo Yii::t('lang','Contacts');?></h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<?php echo $this->renderPartial('contacts', array('dataProvider' => $dataProvider)); ?>
+				<?php //echo $this->renderPartial('contacts', array('dataProvider' => $dataProvider)); ?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn alert-secondary text-light" data-dismiss="modal" style="min-width:100px; padding:2.5px 10px 2.5px 10px; height:30px;">
-					<i class="fa fa-reply"></i> <?php echo Yii::t('lang','close');?>
+					<i class="fa fa-reply"></i> <?php //echo Yii::t('lang','close');?>
 				</button>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 <!-- MOSTRA SCANSIONE NFC -->
