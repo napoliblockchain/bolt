@@ -28,9 +28,9 @@ class NMail {
         $params['activation_code']=crypt::Encrypt($activation_code.','.$encryptedUserId);
 
         $filename = dirname(Yii::app()->getBasePath()) . '/css/images/logomail.png';
-		$image = Swift_Image::fromPath($filename);
-		$logo = $message->embed($image);
-		$params['logo']  = $logo;
+		    $image = Swift_Image::fromPath($filename);
+		    $logo = $message->embed($image);
+		    $params['logo']  = $logo;
 
         if (null !== $model){
             $settingsUser = Settings::loadUser($model->id_user);

@@ -1,6 +1,6 @@
 {
-  "name": "Bolt Wallet",
-  "short_name": "Bolt",
+  "name": "Fidelize Wallet",
+  "short_name": "Wallet",
   "icons": [
     {
       "src": "src/images/icons/app-icon-48x48.png",
@@ -44,7 +44,7 @@
   "orientation": "portrait-primary",
   "background_color": "#fff",
   "theme_color": "#3f51b5",
-  "description": "A wallet using Naples Payment Token, implementing a lot of PWA love.",
+  "description": "A wallet using ERC20 Tokens, implementing a lot of PWA love.",
   "dir": "ltr",
   "lang": "it-IT"
 }
