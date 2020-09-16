@@ -77,24 +77,26 @@ if (isset($settings->poa_blockexplorer) && $settings->poa_blockexplorer != ''){
 									array(
 										'label'=>Yii::t('model','From'),
 										'type'=>'raw',
-										'value' => ($explorer == false ? WebApp::fromUser($model->from_address) :
-											CHtml::link(
-												CHtml::encode(WebApp::fromUser($model->from_address)),
-												$explorer . WebApp::isEthAddress($model->from_address),
-												array("target"=>"_blank")
-											)
-										)
+										// 'value' => ($explorer == false ? WebApp::fromUser($model->from_address) :
+										// 	CHtml::link(
+										// 		CHtml::encode(WebApp::fromUser($model->from_address)),
+										// 		$explorer . WebApp::isEthAddress($model->from_address),
+										// 		array("target"=>"_blank")
+										// 	)
+										// )
+										'value' => WebApp::fromUser($model->from_address),
 									),
 									array(
 										'label'=>Yii::t('model','To'),
 										'type'=>'raw',
-										'value' => ($explorer == false ? WebApp::fromUser($model->to_address) :
-											CHtml::link(
-												CHtml::encode(WebApp::fromUser($model->to_address)),
-												$explorer . WebApp::isEthAddress($model->to_address),
-												array("target"=>"_blank")
-											)
-										)
+										// 'value' => ($explorer == false ? WebApp::fromUser($model->to_address) :
+										// 	CHtml::link(
+										// 		CHtml::encode(WebApp::fromUser($model->to_address)),
+										// 		$explorer . WebApp::isEthAddress($model->to_address),
+										// 		array("target"=>"_blank")
+										// 	)
+										// )
+										'value' => WebApp::fromUser($model->to_address),
 									),
 									array(
 										'label'=>Yii::t('model','Tx Hash'),
