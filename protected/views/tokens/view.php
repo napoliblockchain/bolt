@@ -77,6 +77,7 @@ if (isset($settings->poa_blockexplorer) && $settings->poa_blockexplorer != ''){
 									array(
 										'label'=>Yii::t('model','From'),
 										'type'=>'raw',
+
 										'value' => ($explorer == false ? WebApp::fromUser($model->from_address) :
 											CHtml::link(
 												WebApp::fromUser($model->from_address),
@@ -84,10 +85,12 @@ if (isset($settings->poa_blockexplorer) && $settings->poa_blockexplorer != ''){
 												array("target"=>"_blank")
 											)
 										)
+										
 									),
 									array(
 										'label'=>Yii::t('model','To'),
 										'type'=>'raw',
+
 										'value' => ($explorer == false ? WebApp::fromUser($model->to_address) :
 											CHtml::link(
 												WebApp::fromUser($model->to_address),
