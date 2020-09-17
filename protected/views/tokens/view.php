@@ -79,7 +79,7 @@ if (isset($settings->poa_blockexplorer) && $settings->poa_blockexplorer != ''){
 										'type'=>'raw',
 										'value' => ($explorer == false ? WebApp::fromUser($model->from_address) :
 											CHtml::link(
-												CHtml::encode(WebApp::fromUser($model->from_address)),
+												WebApp::fromUser($model->from_address),
 												$explorer . WebApp::isEthAddress($model->from_address),
 												array("target"=>"_blank")
 											)
@@ -90,7 +90,7 @@ if (isset($settings->poa_blockexplorer) && $settings->poa_blockexplorer != ''){
 										'type'=>'raw',
 										'value' => ($explorer == false ? WebApp::fromUser($model->to_address) :
 											CHtml::link(
-												CHtml::encode(WebApp::fromUser($model->to_address)),
+												WebApp::fromUser($model->to_address),
 												$explorer . WebApp::isEthAddress($model->to_address),
 												array("target"=>"_blank")
 											)
