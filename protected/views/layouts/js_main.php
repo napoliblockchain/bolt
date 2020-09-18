@@ -53,6 +53,7 @@ $myBlockchain = <<<JS
             if (data.success)
             {
               console.log('[blockchain: sync] difference from blocks:',data.diff);
+              console.log('[blockchain: sync] actual block number:',data.chainBlocknumber);
               $('.pulse-button').removeClass('pulse-button-offline');
               if (data.diff > 0){
                 if (data.diff < 2)
