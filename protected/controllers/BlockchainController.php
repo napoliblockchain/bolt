@@ -131,7 +131,7 @@ class BlockchainController extends Controller
 
 		//eseguo lo script che si occuperà in background di verificare lo stato dell'invoice appena creata...
 		$cmd = Yii::app()->basePath.DIRECTORY_SEPARATOR.'yiic ' .$command. ' --id='.$id;
-		Utils::execInBackground($cmd);
+		Seclib::execInBackground($cmd);
 		echo 'Reloading page...';
 		//sleep(2);
 	}
@@ -528,7 +528,7 @@ class BlockchainController extends Controller
 										// eseguo lo script che si occuperà in background di
 										// inviare il messaggio di alert all'utente
 										$cmd = Yii::app()->basePath.DIRECTORY_SEPARATOR.'yiic alert --iduser='.crypt::Encrypt(Wallets::model()->findByAttributes(['wallet_address'=>$tokens->to_address])->id_user). ' --idInstitute='.crypt::Encrypt($institute->id_institute);
-										Utils::execInBackground($cmd);
+										Seclib::execInBackground($cmd);
 									}
 								}
 							}
