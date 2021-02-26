@@ -59,6 +59,12 @@ $myBlockchain = <<<JS
                 if (data.diff < 2)
                   $('.sync-star').addClass('text-success fa-spin');
 
+                if (data.diff >=2 && data.diff < 240){
+                  $('.sync-difference').html('');
+                  $('.blockchain-pairing__loading').remove();
+                  $('.sync-star').removeClass('text-success fa-spin');
+                }
+
                 if (data.diff > 240){ // 1 ora
                   $('.sync-blockchain').html('<div class="blockchain-pairing__loading"><center><img width=15 src="'+ajax_loader_url+'" alt="'+Yii.t('js','loading...')+'"></center></div>');
                   $('.sync-difference').html('<small>'+Yii.t('js','Synchronizing the blockchain: {number} blocks left.', {number:data.diff})+'</small>');
